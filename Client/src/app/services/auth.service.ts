@@ -31,7 +31,7 @@ export class AuthService {
     }
 
   signIn(username: string, password: string) {
-    return this.httpClient.post('http://localhost:3000/api/auth/login', {username : username , password : password}).pipe(
+    return this.httpClient.post('/api/auth/login', {username : username , password : password}).pipe(
       tap( (token) => {
         this.jwtToken.next({
           token : token['token']
@@ -42,7 +42,7 @@ export class AuthService {
 
   signUp(username: string, password: string) { 
     return this.httpClient.post(
-      'http://localhost:3000/api/auth/signup',
+      '/api/auth/signup',
       {username : username, password : password}
     )
   }

@@ -13,31 +13,31 @@ export class BooksService {
 
   addBook(newBook: any) : Observable<any> {
     this.apiService.fixHeaders();
-    return this.httpClient.post<Book>('http://localhost:3000/api/books/add', newBook, this.apiService.httpOptions);
+    return this.httpClient.post<Book>('/api/books/add', newBook, this.apiService.httpOptions);
   }
 
   getBooks(): Observable<any> {
     this.apiService.fixHeaders();
     return this.httpClient.get(
-        'http://localhost:3000/api/books', this.apiService.httpOptions
+        '/api/books', this.apiService.httpOptions
     );
   }
 
   getbook(id: string) : Observable<any> {
     this.apiService.fixHeaders();
-    return this.httpClient.get<Book>('http://localhost:3000/api/books/' + id, this.apiService.httpOptions);
+    return this.httpClient.get<Book>('/api/books/' + id, this.apiService.httpOptions);
   }
 
   editBook(bookId, newBook) {
     this.apiService.fixHeaders();
-    return this.httpClient.post<Book>('http://localhost:3000/api/books/edit/' + bookId, {'book':newBook, 'bookId':bookId}, this.apiService.httpOptions);
+    return this.httpClient.post<Book>('/api/books/edit/' + bookId, {'book':newBook, 'bookId':bookId}, this.apiService.httpOptions);
   }
 
   removeBook(bookId) {
-    return this.httpClient.get<Book>('http://localhost:3000/api/books/delete/' + bookId);
+    return this.httpClient.get<Book>('/api/books/delete/' + bookId);
   }
 
   shareBook(book) {
-    return this.httpClient.post<Book>('http://localhost:3000/api/books/share', book);
+    return this.httpClient.post<Book>('/api/books/share', book);
   }
 }

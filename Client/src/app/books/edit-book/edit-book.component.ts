@@ -20,6 +20,7 @@ export class EditBookComponent implements OnInit {
     isLoaded: boolean = false;
     categories: Observable<any[]>;
     error_message: string = "";
+    errorBook: boolean = false;
 
 	constructor(private router: Router,
 		private route: ActivatedRoute,
@@ -36,7 +37,9 @@ export class EditBookComponent implements OnInit {
                 this.isLoaded = true;  
                 this.initForm();
                 this.editBookForm.setControl('categories', this.formBuilder.array(res.categories || []));
-			}
+			}, (err) => {
+                this.errorBook = true;
+            }
         );       
     }
 	

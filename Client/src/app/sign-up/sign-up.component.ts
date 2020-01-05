@@ -32,14 +32,9 @@ export class SignUpComponent implements OnInit {
     // console.log(f);
     let username = this.signUpForm.get('username').value;    
     let password = this.signUpForm.get('password').value;
-
-    console.log(password);
     
     this.authService.signUp(username, password).subscribe(
         (res) => {
-          console.log(res);
-          // var token = res['token'];
-          // localStorage.setItem('token', token);
           this.router.navigate(['signIn']);
         }, (err) => {
           console.log(err);

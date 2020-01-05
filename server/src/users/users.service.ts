@@ -3,6 +3,8 @@ import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from './user.model';
 var jwt = require('jwt-simple');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 @Injectable()
 export class UsersService {
@@ -17,7 +19,8 @@ export class UsersService {
     var self = this;
     this.userModel.findOne({ username : req.username}, function(err, result) {
       if (result) {
-        if (result.password == req.password) {
+        let isMdpOk = bcrypt.compareSync(req.password, result.password);
+        if (isMdpOk) {
           res.json({token : self.createTokenForUser(result), id : result.id});
         } else {
           res.status(403).send({ErrorMsg : 'Mauvais mot de passe.'});
@@ -29,7 +32,10 @@ export class UsersService {
   }
 
   create = function(req, res) {
-    const createUser = new this.userModel(req);
+    var salt = bcrypt.genSaltSync(saltRounds);
+    var hash = bcrypt.hashSync(req.password, salt);
+    req.password = hash;
+    const createUser = new this.userModel(req);    
     createUser.save(function(err, result ) {
       if(err) {
         console.log(err);

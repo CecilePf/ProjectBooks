@@ -1,0 +1,19 @@
+<div  class="row align-items-center form_sign justify-content-center">
+    <div class="col-8 align-self-center">
+        
+        <h1>Ajouter une catégorie</h1>
+        <mat-card>
+            <form [formGroup]="addCategoryForm" (ngSubmit)="onSubmit()" class="example-form">
+                <mat-form-field class="example-full-width">
+                    <div class="error" *ngIf="error_message != '' ">{{ error_message }}</div>
+                    <input matInput type="text" formControlName="label" placeholder="Nom catégorie">
+                </mat-form-field>
+                
+                <button [disabled]="addCategoryForm.invalid" mat-raised-button color="primary" type="submit">Ajouter</button>
+                
+            </form>
+        </mat-card>
+    </div>
+</div>
+
+

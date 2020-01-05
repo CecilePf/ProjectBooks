@@ -1,0 +1,24 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <span>Books Project</span>
+        <span class="example-fill-remaining-space"></span>
+        <div *ngIf="!jwtToken.token">
+            <a class="margin-right" routerLink="signIn">Connexion</a>
+            <a class="margin-right" routerLink="signUp">Inscription</a>
+        </div>
+        <div *ngIf="jwtToken.token">
+            <a class="margin-right" routerLink="categories">Catégories</a>
+            <a class="margin-right" routerLink="books">Livres</a>
+            <a (click)="logout()">Déconnexion</a>
+        </div>  
+    </mat-toolbar-row>
+</mat-toolbar>
+
+
+<div class="container">
+    <router-outlet></router-outlet>
+</div>
+
+
+
+

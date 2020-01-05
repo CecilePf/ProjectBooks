@@ -1,0 +1,18 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Catégorie</th>
+            <th scope='col'>Supprimer</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let categorie of categories">
+            <td>{{ categorie.label }}</td>
+            <td><button mat-raised-button color="primary" type="button"  (click)="remove(categorie._id)">Supprimer</button></td>
+        </tr>
+    </tbody>
+</table>
+
+<a routerLink="/addCategory">
+    <button mat-raised-button color="primary" type="button" >Ajouter une catégorie</button>
+</a>

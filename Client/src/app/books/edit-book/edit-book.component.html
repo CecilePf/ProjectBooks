@@ -1,0 +1,33 @@
+<h1>Editer un livre</h1>   
+
+<mat-card *ngIf="isLoaded">
+    <form [formGroup]="editBookForm" (ngSubmit)="onSubmit()" class="example-form">
+        <mat-form-field class="example-full-width">
+            <div class="error" *ngIf="error_message != '' ">{{ error_message }}</div>
+            <input matInput type="text" formControlName="title" placeholder="Titre de votre livre" value="{{ oldBook.title }}">
+        </mat-form-field>
+        
+        <mat-form-field class="example-full-width">
+            <textarea matInput  type="text" formControlName="resume" placeholder="Résumé de votre livre" value="{{ oldBook.resume }}"></textarea>
+        </mat-form-field>
+        
+        <mat-form-field class="example-full-width">
+            <input matInput type="number" formControlName="note" placeholder="note sur 10" value="{{ oldBook.note }}">
+        </mat-form-field>
+        
+        <div formArrayName="categories">
+            <div  *ngFor="let categorieControl of getCategories().controls; let i = index">
+                <mat-form-field>
+                    <mat-label>categorie</mat-label>
+                    <select matNativeControl [formControlName]="i" >
+                        <option *ngFor="let category of categories" [value]="category.label" >{{ category.label }}</option>
+                    </select>
+                </mat-form-field>
+            </div>
+            <button mat-raised-button color="primary" type="button"  (click)="onAddCategory()">Ajouter Catégorie</button>
+        </div>
+        <br>
+        <button mat-raised-button color="primary" type="submit">Editer le livre</button>
+        
+    </form>
+</mat-card>

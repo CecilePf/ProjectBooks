@@ -4,7 +4,7 @@
     <div class="error" *ngIf="error">
         {{ error }}
     </div>
-    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit(f)" #f="ngForm" class="example-form">
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" #f="ngForm" class="example-form">
         <mat-form-field class="example-full-width">
             <input matInput type="text" formControlName="username" placeholder="Votre pseudo" required>
         </mat-form-field>
